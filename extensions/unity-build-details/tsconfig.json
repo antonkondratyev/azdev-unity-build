@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "amd",
+    "moduleResolution": "node",
+    "rootDir": "src/",
+    "outDir": "scripts/",
+    "types": [
+      "vss-web-extension-sdk"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

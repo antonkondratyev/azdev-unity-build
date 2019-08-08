@@ -1,0 +1,30 @@
+{
+  "env": {
+    "prod": {
+      "tasks": [
+        {
+          "id": "e13413f6-1510-4408-b99d-35e8ab89e1ec",
+          "name": "UnityBuild",
+          "friendlyName": "Unity Build"
+        }
+      ],
+      "manifest": {
+        "id": "unity-build",
+        "name": "Unity Build"
+      }
+    },
+    "dev": {
+      "tasks": [
+        {
+          "id": "a5a97ea6-5d31-4dfe-8149-28e3ce012f4c",
+          "name": "UnityBuildDev",
+          "friendlyName": "Unity Build (Dev)"
+        }
+      ],
+      "manifest": {
+        "id": "unity-build-dev",
+        "name": "Unity Build (Dev)"
+      }
+    }
+  }
+}

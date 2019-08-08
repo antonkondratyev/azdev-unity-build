@@ -1,0 +1,546 @@
+{
+  "id": "e13413f6-1510-4408-b99d-35e8ab89e1ec",
+  "name": "UnityBuild",
+  "friendlyName": "Unity Build",
+  "description": "Build with Unity",
+  "author": "Anton Kondratyev",
+  "category": "Build",
+  "visibility": [
+    "Build"
+  ],
+  "helpMarkDown": "",
+  "icons": {
+    "default": "icon.png"
+  },
+  "demands": [
+    "unity"
+  ],
+  "version": {
+    "Major": 1,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "minimumAgentVersion": "",
+  "instanceNameFormat": "Build Unity project",
+  "groups": [
+    {
+      "name": "traceOptions",
+      "displayName": "Trace Options",
+      "isExpanded": false
+    },
+    {
+      "name": "loggingOptions",
+      "displayName": "Logging Options",
+      "isExpanded": false
+    },
+    {
+      "name": "packageOptions",
+      "displayName": "Package Options",
+      "isExpanded": false
+    },
+    {
+      "name": "cachingOptions",
+      "displayName": "Сaching Options",
+      "isExpanded": false
+    },
+    {
+      "name": "testingOptions",
+      "displayName": "Testing Options",
+      "isExpanded": false
+    },
+    {
+      "name": "licenseOptions",
+      "displayName": "License Options",
+      "isExpanded": false
+    },
+    {
+      "name": "advanced",
+      "displayName": "Advanced Options",
+      "isExpanded": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "projectPath",
+      "type": "filePath",
+      "label": "Project Path",
+      "defaultValue": "$(Build.SourcesDirectory)",
+      "required": true,
+      "helpMarkDown": "Open the project at the given path."
+    },
+    {
+      "name": "buildTarget",
+      "type": "pickList",
+      "label": "Build Target",
+      "required": true,
+      "defaultValue": "ios",
+      "options": {
+        "none": "none",
+        "android": "android",
+        "ios": "ios",
+        "linux": "linux",
+        "linux64": "linux64",
+        "osx": "osx",
+        "ps3": "ps3",
+        "ps4": "ps4",
+        "psp2": "psp2",
+        "samsungtv": "samsungtv",
+        "tizen": "tizen",
+        "web": "web",
+        "webgl": "webgl",
+        "webstreamed": "webstreamed",
+        "win32": "win32",
+        "win64": "win64",
+        "wp8": "wp8",
+        "wsa": "wsa",
+        "xbox360": "xbox360",
+        "xboxone": "xboxone"
+      },
+      "helpMarkDown": "Allows the selection of an active build target before a project is loaded."
+    },
+    {
+      "name": "executeMethod",
+      "type": "string",
+      "label": "Execute Method",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Execute the static method as soon as Unity is started."
+    },
+    {
+      "name": "customArgs",
+      "type": "multiLine",
+      "label": "Unity Arguments",
+      "defaultValue": "",
+      "required": false,
+      "properties": {
+        "resizable": true,
+        "rows": "2"
+      },
+      "helpMarkDown": "Additional Unity command line arguments."
+    },
+    {
+      "name": "traceLevel",
+      "type": "pickList",
+      "label": "Trace Level",
+      "required": true,
+      "defaultValue": "all",
+      "options": {
+        "all": "All",
+        "error": "Error",
+        "warning": "Warning"
+      },
+      "groupName": "traceOptions",
+      "helpMarkDown": "Console output trace level:\nAll - show all Unity log lines.\nError - show only error message from Unity log.\nWarning - show error and warning message from Unity log."
+    },
+    {
+      "name": "muteEmptyLines",
+      "type": "boolean",
+      "label": "Mute Empty Lines",
+      "defaultValue": true,
+      "required": false,
+      "groupName": "traceOptions",
+      "helpMarkDown": "Hides empty lines in the build log.\nThis option controls the rule with ID 'muteEmptyLines'."
+    },
+    {
+      "name": "muteCompilerOutput",
+      "type": "boolean",
+      "label": "Mute Compiler Output",
+      "defaultValue": true,
+      "required": false,
+      "groupName": "traceOptions",
+      "helpMarkDown": "Hides in the build log 'Compiler Output' lines.\nThis option controls the rule with ID 'muteCompilerOutput' and 'muteCompilerCmdArgs'."
+    },
+    {
+      "name": "muteUpdatingGuid",
+      "type": "boolean",
+      "label": "Mute Updating Guid",
+      "defaultValue": true,
+      "required": false,
+      "groupName": "traceOptions",
+      "helpMarkDown": "Hides in the build log 'Asset named <name> is skipped as no actual change' lines.\nThis option controls the rule with ID 'muteUpdatingGuid'."
+    },
+    {
+      "name": "printMutedLinesInfo",
+      "type": "boolean",
+      "label": "Print Muted Lines Info",
+      "defaultValue": true,
+      "required": false,
+      "groupName": "traceOptions",
+      "helpMarkDown": "Collapses more than two consecutive identical messages in the log with counting the number of lines and showed reason.\nThis option controls the rule with ID 'printMutedLinesInfo'."
+    },
+    {
+      "name": "traceRulesSelector",
+      "type": "pickList",
+      "label": "Add Trace Rules",
+      "required": false,
+      "defaultValue": "none",
+      "options": {
+        "none": "None",
+        "traceRulesInline": "Inline",
+        "traceRulesFilePath": "File Path"
+      },
+      "groupName": "traceOptions",
+      "helpMarkDown": "Adds or Overrides Built-In tracing rules for manipulations with output lines from Unity log."
+    },
+    {
+      "name": "traceRulesInline",
+      "type": "multiLine",
+      "label": "Additional Trace Rules",
+      "defaultValue": "",
+      "required": true,
+      "properties": {
+        "resizable": true,
+        "rows": "4"
+      },
+      "groupName": "traceOptions",
+      "visibleRule": "traceRulesSelector = traceRulesInline",
+      "helpMarkDown": "Adds or Overrides Built-In tracing rules for manipulations with output lines from Unity log."
+    },
+    {
+      "name": "traceRulesFilePath",
+      "type": "filePath",
+      "label": "Additional Trace Rules Path",
+      "defaultValue": "",
+      "required": true,
+      "groupName": "traceOptions",
+      "visibleRule": "traceRulesSelector = traceRulesFilePath",
+      "helpMarkDown": "Adds or Overrides Built-In tracing rules for manipulations with output lines from Unity log."
+    },
+    {
+      "name": "cleanedLogFile",
+      "type": "pickList",
+      "label": "Log Stack Traces",
+      "required": false,
+      "defaultValue": "none",
+      "options": {
+        "default": "As Configured",
+        "none": "None",
+        "script": "Script Only",
+        "full": "Full"
+      },
+      "groupName": "loggingOptions",
+      "helpMarkDown": "Detailed debugging feature. StackTraceLogging allows features to be controlled to allow detailed logging."
+    },
+    {
+      "name": "logFilePath",
+      "type": "filePath",
+      "label": "Log File Path",
+      "defaultValue": "$(Build.ArtifactStagingDirectory)/unity.log",
+      "required": false,
+      "groupName": "loggingOptions",
+      "helpMarkDown": "Specify where the Editor or Windows/Linux/OSX standalone log file are written. Default: %TEMP%/unity.log"
+    },
+    {
+      "name": "importPackage",
+      "type": "string",
+      "label": "Import Package",
+      "defaultValue": "",
+      "required": false,
+      "groupName": "packageOptions",
+      "helpMarkDown": "Import the given package. No import dialog is shown."
+    },
+    {
+      "name": "exportPackage",
+      "type": "string",
+      "label": "Export Package",
+      "defaultValue": "",
+      "required": false,
+      "groupName": "packageOptions",
+      "helpMarkDown": "The package name to export."
+    },
+    {
+      "name": "exportPackageAssets",
+      "type": "multiLine",
+      "label": "Export Assets",
+      "defaultValue": "",
+      "required": false,
+      "properties": {
+        "resizable": true,
+        "rows": "2"
+      },
+      "groupName": "packageOptions",
+      "helpMarkDown": "Export a package, given a path (or set of given paths). Folder relative to to the Unity project root to export from the Unity project."
+    },
+    {
+      "name": "cacheServer",
+      "type": "pickList",
+      "label": "Cache Server",
+      "required": true,
+      "defaultValue": "none",
+      "options": {
+        "none": "As Configured",
+        "enable": "Force Enable",
+        "disable": "Force Disable"
+      },
+      "groupName": "cachingOptions",
+      "helpMarkDown": "Not implemented!"
+    },
+    {
+      "name": "cacheServerAddress",
+      "type": "string",
+      "label": "Cache Server Address",
+      "defaultValue": "",
+      "required": false,
+      "groupName": "cachingOptions",
+      "visibleRule": "cacheServer = enable",
+      "helpMarkDown": "Not implemented!"
+    },
+    {
+      "name": "backupLibrary",
+      "type": "boolean",
+      "label": "Backup Unity Library",
+      "defaultValue": true,
+      "required": false,
+      "groupName": "cachingOptions",
+      "helpMarkDown": "Backup Unity Library after Unity process complete and Restore before. Default backup folder: $(Agent.BuildDirectory)/UnityLibraryBackup"
+    },
+    {
+      "name": "backupLibraryPath",
+      "type": "filePath",
+      "label": "Backup Unity Library Path",
+      "defaultValue": "$(Agent.BuildDirectory)/UnityLibraryBackup",
+      "required": true,
+      "groupName": "cachingOptions",
+      "visibleRule": "backupLibrary = true",
+      "helpMarkDown": "Path to backup directory."
+    },
+    {
+      "name": "cleanScriptAssemblies",
+      "type": "boolean",
+      "label": "Clean Library/ScriptAssemblies Folder",
+      "defaultValue": false,
+      "required": false,
+      "groupName": "cachingOptions",
+      "helpMarkDown": "This option is executed just before running Unity Editor and regardless of the \"Backup Unity Library\" option. It can help to solve compile or build error related to adding new classes or merging branches."
+    },
+    {
+      "name": "cleanScriptMapper",
+      "type": "boolean",
+      "label": "Clean Library/ScriptMapper File",
+      "defaultValue": false,
+      "required": false,
+      "groupName": "cachingOptions",
+      "helpMarkDown": "This option is executed just before running Unity Editor and regardless of the \"Backup Unity Library\" option. It can help to solve compile or build error related to adding new classes or merging branches."
+    },
+    {
+      "name": "runEditorTests",
+      "type": "boolean",
+      "label": "Run Tests",
+      "defaultValue": false,
+      "required": false,
+      "groupName": "testingOptions",
+      "helpMarkDown": "Run editor tests from the project. This argument requires projectPath and it’s good to run it with batchmode argument. quit is not required as the editor will automatically close down after the run is finished."
+    },
+    {
+      "name": "editorTestsCategories",
+      "type": "string",
+      "label": "Tests Categories",
+      "defaultValue": "",
+      "required": false,
+      "groupName": "testingOptions",
+      "visibleRule": "runEditorTests = true",
+      "helpMarkDown": "Filter editor tests by categories. Separate test categories with a comma."
+    },
+    {
+      "name": "editorTestsFilter",
+      "type": "string",
+      "label": "Tests Filter",
+      "defaultValue": "",
+      "required": false,
+      "groupName": "testingOptions",
+      "visibleRule": "runEditorTests = true",
+      "helpMarkDown": "Filter editor tests by names. Separate test names with a comma."
+    },
+    {
+      "name": "editorTestsResults",
+      "type": "filePath",
+      "label": "Tests Results",
+      "defaultValue": "$(Common.TestResultsDirectory)",
+      "required": false,
+      "groupName": "testingOptions",
+      "visibleRule": "runEditorTests = true",
+      "helpMarkDown": "Path where the result file should be placed. If the path is a folder, a default file name will be used. If not specified, the results will be places in project’s root folder."
+    },
+    {
+      "name": "license",
+      "type": "pickList",
+      "label": "Unity License",
+      "required": true,
+      "defaultValue": "none",
+      "options": {
+        "none": "As Configured",
+        "forceActivate": "Force Activate",
+        "forceFree": "Force Free"
+      },
+      "groupName": "licenseOptions",
+      "helpMarkDown": "Unity activation mode."
+    },
+    {
+      "name": "licenseSerial",
+      "type": "string",
+      "label": "Serial",
+      "defaultValue": "",
+      "required": false,
+      "groupName": "licenseOptions",
+      "visibleRule": "license = forceActivate",
+      "helpMarkDown": "Activates Unity with the specified serial key."
+    },
+    {
+      "name": "licenseUsername",
+      "type": "string",
+      "label": "Username",
+      "defaultValue": "",
+      "required": false,
+      "groupName": "licenseOptions",
+      "visibleRule": "license = forceActivate",
+      "helpMarkDown": "Enter a username into the log-in form during activation of the Unity Editor."
+    },
+    {
+      "name": "licensePassword",
+      "type": "string",
+      "label": "Password",
+      "defaultValue": "",
+      "required": false,
+      "groupName": "licenseOptions",
+      "visibleRule": "license = forceActivate",
+      "helpMarkDown": "The password of the user, required when launching."
+    },
+    {
+      "name": "licenseReturn",
+      "type": "boolean",
+      "label": "Return License",
+      "defaultValue": true,
+      "required": false,
+      "groupName": "licenseOptions",
+      "visibleRule": "license = forceActivate",
+      "helpMarkDown": "Return the currently active license to the license server."
+    },
+    {
+      "name": "partiallySucceededOnOutputError",
+      "type": "boolean",
+      "label": "Partially Succeeded on Output Error",
+      "defaultValue": true,
+      "required": false,
+      "groupName": "advanced",
+      "helpMarkDown": "Set 'Partially Succeeded' status if any errors are written to the Unity Output stream"
+    },
+    {
+      "name": "failOnOutputError",
+      "type": "boolean",
+      "label": "Fail on Output Error",
+      "defaultValue": false,
+      "required": false,
+      "groupName": "advanced",
+      "helpMarkDown": "If this is true, this task will fail if any errors are written to the Unity Output stream."
+    },
+    {
+      "name": "batchmode",
+      "type": "boolean",
+      "label": "Batchmode",
+      "defaultValue": true,
+      "required": false,
+      "groupName": "advanced",
+      "helpMarkDown": "Run Unity in batch mode. It ensures no pop-up windows appear and eliminates the need for any human intervention. When an exception occurs during execution of the script code, the Asset server updates fail, or other operations fail, Unity immediately exits with return code 1."
+    },
+    {
+      "name": "nographics",
+      "type": "boolean",
+      "label": "No Graphics",
+      "defaultValue": true,
+      "required": false,
+      "groupName": "advanced",
+      "helpMarkDown": "Don't initialize the graphics device."
+    },
+    {
+      "name": "silentCrashes",
+      "type": "boolean",
+      "label": "Silent Crashes",
+      "defaultValue": true,
+      "required": false,
+      "groupName": "advanced",
+      "helpMarkDown": "Don't display a crash dialog."
+    },
+    {
+      "name": "quit",
+      "type": "boolean",
+      "label": "Quit",
+      "defaultValue": true,
+      "required": false,
+      "groupName": "advanced",
+      "helpMarkDown": "Quit the Unity Editor after other commands have finished executing."
+    },
+    {
+      "name": "unityVersion",
+      "type": "pickList",
+      "label": "Unity Version",
+      "required": true,
+      "defaultValue": "latest",
+      "options": {
+        "latest": "Latest",
+        "534p1": "5.3.4p1",
+        "specificVersion": "Specific Version",
+        "specificPath": "Specific Path"
+      },
+      "groupName": "advanced",
+      "helpMarkDown": "Use proposed sheme."
+    },
+    {
+      "name": "specificVersion",
+      "type": "string",
+      "label": "Unity Editor Version",
+      "required": true,
+      "defaultValue": "",
+      "groupName": "advanced",
+      "visibleRule": "unityVersion = specificVersion",
+      "helpMarkDown": ""
+    },
+    {
+      "name": "specificPath",
+      "type": "string",
+      "label": "Unity Editor Path",
+      "defaultValue": "",
+      "required": true,
+      "groupName": "advanced",
+      "visibleRule": "unityVersion = specificPath",
+      "helpMarkDown": "Path to Unity application."
+    }
+  ],
+  "execution": {
+    "Node": {
+      "target": "index.js",
+      "argumentFormat": ""
+    }
+  },
+  "messages": {
+    "CheckUnityPath": "Checking Unity path: %s",
+    "UnityPathNotFound": "Unity path not defined automatically or can't be a found on %s OS. Set the path manually.",
+    "CopyLogFile": "Copying %s to %s",
+    "CopyLogFileFailed": "%s can't be copied to the %s for a reason: %s",
+    "UnityExitCode": "Unity process exited with code: %d",
+    "AmountOfMutedLines": "This is not full Unity log. Muted %s lines. Total processed %s lines.",
+    "PartiallySuccessful": "The task is Partially Successful because some Error messages were detected.",
+    "UncaughtException": "Task Uncaught Exception: %s",
+    "MutedByReason": "  Muted %s lines by reason: %s",
+    "MuteSection": "Mute Section: %s",
+    "CriticalMessage": "Found critical message line",
+    "ProgressMessage": "Step %s",
+    "UnityStdOut": "Unity stdout: %s",
+    "UnityStdErr": "Unity stderr: %s",
+    "UnityInterrupted": "The operation was interrupted.",
+    "UnityTerminating": "Terminating Unity process...",
+    "UnityTerminatingPid": "Terminating Unity process ID: %d",
+    "UnityTerminated": "Unity process terminated.",
+    "FileNotFound": "File %s not found.",
+    "UnityLogPath": "Unity log file path: %s",
+    "UnityLogListenStarted": "Started to listening Unity log file.",
+    "UnityLogListenStopped": "Stopped to listening Unity log file.",
+    "CleaningScriptAssemblies": "Cleaning Library/ScriptAssemblies folder.",
+    "CleaningScriptMapper": "Cleaning Library/ScriptMapper file.",
+    "UnityLibraryBackuping": "Backuping Unity Library %s to %s",
+    "UnityLibraryBackupFail": "The Unity Library can't be backuped.",
+    "UnityLibraryBackupSuccess": "Unity Library backuped to %s",
+    "UnityLibraryRestoring": "Restoring Unity Library %s to %s",
+    "UnityLibraryRestoreFail": "The Unity Library can't be restored.",
+    "UnityLibraryRestoreSuccess": "Unity Library restored from %s"
+  }
+}

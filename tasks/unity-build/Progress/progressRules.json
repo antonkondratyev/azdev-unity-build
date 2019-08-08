@@ -1,0 +1,13 @@
+[
+  { "pattern": "Initialize mono", "percent": 1 },
+  { "pattern": "Initializing Unity extensions", "percent": 5 },
+  { "pattern": "Packing sprites", "percent": 10 },
+  { "pattern": "Mono dependencies", "percent": 20 },
+  { "pattern": "Fetching assembly references", "percent": 30 },
+  { "pattern": "Complete size", "percent": 40 },
+  { "pattern": "Used Assets and files from the Resources folder", "percent": 45 },
+  { "pattern": "Invoking il2cpp with arguments", "percent": 50 },
+  { "pattern": "Batchmode quit", "percent": 95 },
+  { "pattern": "Cleanup mono", "percent": 99 },
+  { "pattern": "Exiting batchmode", "percent": 100 }
+]

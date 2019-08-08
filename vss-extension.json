@@ -1,0 +1,75 @@
+{
+  "manifestVersion": 1,
+  "id": "unity-build",
+  "name": "Unity Build",
+  "version": "1.0.0",
+  "publisher": "kondratyevanton",
+  "public": true,
+  "description": "Build Unity Project",
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "categories": [
+    "Build and release"
+  ],
+  "content": {
+    "details": {
+      "path": "README.md"
+    },
+    "license": {
+      "path": "LICENSE"
+    }
+  },
+  "icons": {
+    "default": "images/logo.png"
+  },
+  "scopes": [
+    "vso.build"
+  ],
+  "contributions": [
+    {
+      "id": "unity-build",
+      "type": "ms.vss-distributed-task.task",
+      "description": "A tab to Unity build results view",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "tasks/unity-build"
+      }
+    },
+    {
+      "id": "unity-build-details-tab",
+      "type": "ms.vss-build-web.build-results-tab",
+      "targets": [
+        "ms.vss-build-web.build-results-view"
+      ],
+      "properties": {
+        "name": "Unity Build",
+        "uri": "unity-build-details/buildDetailsPanel.html",
+        "order": 20,
+        "height": "100%"
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "tasks/unity-build"
+    },
+    {
+      "path": "unity-build-details",
+      "addressable": true
+    },
+    {
+      "path": "images",
+      "addressable": true
+    },
+    {
+      "path": "scripts",
+      "addressable": true,
+      "contentType": "application/octet-stream"
+    }
+  ]
+}
